@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Exclui o banco SQLite do backup automático. -->
+    <exclude
+        domain="database"
+        path="nutria.sqlite" />
+    <exclude
+        domain="database"
+        path="nutria.sqlite-shm" />
+    <exclude
+        domain="database"
+        path="nutria.sqlite-wal" />
+</full-backup-content>
