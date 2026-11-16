@@ -1,0 +1,54 @@
+food_name,label,grams
+"Arroz, tipo 1, cozido",colher de sopa,25
+"Arroz, tipo 1, cozido",escumadeira,90
+"Arroz, tipo 1, cozido",prato raso,130
+"Arroz, integral, cozido",colher de sopa,25
+"Arroz, integral, cozido",escumadeira,90
+"Arroz, integral, cozido",prato raso,130
+"Feijão, carioca, cozido",colher de sopa,20
+"Feijão, carioca, cozido",concha,100
+"Feijão, carioca, cozido",colher de servir,60
+"Feijão, preto, cozido",colher de sopa,20
+"Feijão, preto, cozido",concha,100
+"Frango, peito, sem pele, grelhado",filé,100
+"Frango, peito, sem pele, grelhado",colher de sopa,25
+"Frango, peito, sem pele, grelhado",pedaço,80
+"Frango, coxa, sem pele, cozida",unidade,60
+"Ovo, de galinha, inteiro, cozido/10minutos",unidade,50
+"Ovo, de galinha, inteiro, frito",unidade,50
+"Pão, trigo, francês",unidade,50
+"Pão, trigo, francês",fatia,25
+"Pão, trigo, forma, integral",fatia,25
+"Banana, prata, crua",unidade,70
+"Banana, nanica, crua",unidade,100
+"Maçã, Fuji, com casca, crua",unidade,130
+"Leite, de vaca, integral",copo,200
+"Leite, de vaca, integral",copo americano,150
+"Iogurte, natural",pote,170
+"Iogurte, natural",colher de sopa,20
+"Queijo, minas, frescal",fatia,30
+"Queijo, mozarela",fatia,30
+"Batata, inglesa, cozida",unidade,100
+"Batata, inglesa, cozida",colher de sopa,30
+"Batata, doce, cozida",unidade,130
+"Batata, doce, cozida",colher de sopa,30
+"Macarrão, trigo, cru",colher de sopa,25
+"Macarrão, trigo, cru",prato raso,80
+"Aveia, flocos, crua",colher de sopa,15
+"Azeite, de oliva, extra virgem",colher de sopa,13
+"Azeite, de oliva, extra virgem",colher de chá,4
+"Óleo, de soja",colher de sopa,13
+"Açúcar, refinado",colher de sopa,12
+"Açúcar, refinado",colher de chá,4
+"Café, infusão 10%",xícara,50
+"Café, infusão 10%",copo,200
+"Carne, bovina, patinho, sem gordura, grelhado",bife,100
+"Carne, bovina, patinho, sem gordura, grelhado",colher de sopa,25
+"Carne, bovina, acém, moído, cozido",colher de sopa,25
+"Salmão, sem pele, fresco, grelhado",filé,100
+"Tomate, com semente, cru",unidade,90
+"Tomate, com semente, cru",fatia,20
+"Alface, crespa, crua",folha,10
+"Cenoura, crua",unidade,90
+"Mamão, Papaia, cru",fatia,150
+"Abacate, cru",colher de sopa,30
