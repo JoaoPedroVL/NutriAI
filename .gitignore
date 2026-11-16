@@ -50,3 +50,11 @@ app.*.map.json
 # Ferramentas locais de agente / referencias de terceiros
 .opencode/
 /referencias/
+
+# Assinatura de release (nunca versionar)
+android/key.properties
+*.jks
+*.keystore
+
+# Saída do Gradle do módulo Android
+android/build/

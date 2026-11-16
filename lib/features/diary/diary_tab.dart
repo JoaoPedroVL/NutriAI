@@ -136,7 +136,7 @@ class _Header extends StatelessWidget {
                       size: AppIconSize.sm, color: context.colors.green),
                   SizedBox(width: AppSpacing.xs),
                   Text(
-                    'Nutria',
+                    'NutriAI',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: context.colors.green,
                       fontWeight: FontWeight.w700,

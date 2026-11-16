@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
@@ -13,6 +14,7 @@ import '../../core/user_profile.dart';
 import '../../data/db/database.dart' show UserProfileData;
 import '../../data/services/notification_service.dart';
 import '../../shared/widgets/app_card.dart';
+import '../../shared/widgets/export_dialog.dart';
 import '../../shared/widgets/metric_tile.dart';
 import '../goals/goals_dialog.dart';
 import '../onboarding/onboarding_screen.dart';
@@ -112,7 +114,7 @@ class ProfileTab extends ConsumerWidget {
           const SizedBox(height: 10),
           _BackupCard(),
           const SizedBox(height: 22),
-          const SectionHeader(title: 'Sobre o Nutria'),
+          const SectionHeader(title: 'Sobre o NutriAI'),
           const SizedBox(height: 10),
           AppCard(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
@@ -130,7 +132,7 @@ class ProfileTab extends ConsumerWidget {
                 ),
                 _InfoRow(
                   icon: Icons.eco_rounded,
-                  title: 'Nutria $appVersion',
+                  title: 'NutriAI $appVersion',
                   subtitle: 'Diário de bolso, feito para não perder nada.',
                   showDivider: false,
                 ),
@@ -377,6 +379,21 @@ class _BackupCard extends ConsumerWidget {
                 child: OutlinedButton.icon(
                   onPressed: () async {
                     try {
+                      // Na web o diálogo deixa o usuário baixar/copiar dentro
+                      // do toque (o Safari bloqueia download fora do gesto).
+                      if (kIsWeb) {
+                        final json = await backupService.exportToJson();
+                        if (context.mounted) {
+                          await showExportDialog(
+                            context,
+                            title: 'Backup do NutriAI',
+                            content: json,
+                            fileName: backupService.backupFileName,
+                            mimeType: 'application/json',
+                          );
+                        }
+                        return;
+                      }
                       await backupService.exportAndShare();
                       if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -498,12 +515,31 @@ class _BackupCard extends ConsumerWidget {
     }
 
     final csv = const CsvEncoder().convert(csvData);
-    final tempDir = await getTemporaryDirectory();
     final fileName = 'nutria_diario_${DateTime.now().toIso8601String().split('T').first}.csv';
+
+    if (kIsWeb) {
+      if (context.mounted) {
+        await showExportDialog(
+          context,
+          title: 'Diário em CSV',
+          content: csv,
+          fileName: fileName,
+          mimeType: 'text/csv',
+        );
+      }
+      return;
+    }
+
+    final tempDir = await getTemporaryDirectory();
     final file = File('${tempDir.path}/$fileName');
     await file.writeAsString(csv);
 
-    await Share.shareXFiles([XFile(file.path)], text: 'Exportação do diário Nutria (CSV)');
+    await SharePlus.instance.share(
+      ShareParams(
+        files: [XFile(file.path)],
+        text: 'Exportação do diário NutriAI (CSV)',
+      ),
+    );
   }
 }
 

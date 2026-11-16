@@ -26,11 +26,11 @@ void main() {
     );
 
     for (var i = 0;
-        i < 40 && find.text('Bem-vindo ao Nutria').evaluate().isEmpty;
+        i < 40 && find.text('Bem-vindo ao NutriAI').evaluate().isEmpty;
         i++) {
       await tester.pump(const Duration(milliseconds: 50));
     }
-    expect(find.text('Bem-vindo ao Nutria'), findsOneWidget);
+    expect(find.text('Bem-vindo ao NutriAI'), findsOneWidget);
 
     await tester.tap(find.text('Avançar'));
     await tester.pumpAndSettle();
@@ -59,7 +59,7 @@ void main() {
     expect(find.text('Suas metas calculadas'), findsOneWidget);
 
     await tester.tap(find.text('Começar'));
-    for (var i = 0; i < 40 && find.text('Nutria').evaluate().isEmpty; i++) {
+    for (var i = 0; i < 40 && find.text('NutriAI').evaluate().isEmpty; i++) {
       await tester.pump(const Duration(milliseconds: 50));
     }
 
@@ -72,7 +72,7 @@ void main() {
     expect(profile.kcal, greaterThan(0));
     expect(profile.protein, greaterThan(0));
 
-    expect(find.text('Nutria'), findsOneWidget);
+    expect(find.text('NutriAI'), findsOneWidget);
 
     await tester.pumpWidget(const SizedBox());
     await tester.pump(const Duration(milliseconds: 10));

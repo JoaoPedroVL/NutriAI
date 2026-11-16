@@ -37,7 +37,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   final List<_OnboardingPage> _pages = [
     _OnboardingPage(
-      title: 'Bem-vindo ao Nutria',
+      title: 'Bem-vindo ao NutriAI',
       subtitle: 'Vamos configurar seu perfil para calcular suas metas personalizadas.',
       icon: Icons.restaurant_menu,
     ),
@@ -53,7 +53,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     ),
     _OnboardingPage(
       title: 'Seu Objetivo',
-      subtitle: 'O que você deseja alcançar com o Nutria?',
+      subtitle: 'O que você deseja alcançar com o NutriAI?',
       icon: Icons.flag,
     ),
     _OnboardingPage(
@@ -301,7 +301,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           ),
           const SizedBox(height: 32),
           Text(
-            'Bem-vindo ao Nutria',
+            'Bem-vindo ao NutriAI',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.w800,
               color: context.colors.ink,

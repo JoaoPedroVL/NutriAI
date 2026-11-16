@@ -44,7 +44,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 50));
     }
 
-    expect(find.text('Nutria'), findsOneWidget);
+    expect(find.text('NutriAI'), findsOneWidget);
     expect(find.text('Proteína'), findsOneWidget);
     expect(find.text('Almoço'), findsOneWidget);
     expect(find.text('Adicionar'), findsOneWidget);

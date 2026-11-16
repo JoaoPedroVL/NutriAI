@@ -1,4 +1,4 @@
-# Nutria
+# NutriAI
 
 Diário alimentar **local-first** para Android e iOS. Registra o que você comeu
 (100 g de arroz + 100 g de frango) e mostra calorias, proteína, carboidrato e
@@ -79,6 +79,31 @@ flutter test         # suíte de persistência + widget
 ```
 
 > Se você alterar `lib/data/db/database.dart`, rode o `build_runner` de novo.
+
+### Instalar no Android (APK assinado)
+
+```bash
+flutter build apk --release
+adb install -r build/app/outputs/flutter-apk/app-release.apk
+```
+
+O APK sai assinado com a chave de release (`~/.nutriai/upload-keystore.jks`,
+senhas em `android/key.properties`, ambos fora do Git). Versão, backup da chave,
+Play Store (`.aab`) e regeneração de ícones: [docs/RELEASE.md](docs/RELEASE.md).
+
+### Instalar no iPhone (PWA)
+
+A versão web roda como PWA e é a forma de usar no iPhone sem precisar de um Mac
+para compilar iOS:
+
+1. Abra <https://joaopedrovl.github.io/NutriAI/> no **Safari**.
+2. Toque em **Compartilhar → Adicionar à Tela de Início**.
+3. Abra pelo ícone: tela cheia, sem barra do navegador, e funciona offline
+   depois da primeira carga.
+
+Os dados ficam no armazenamento do próprio aparelho (IndexedDB), como no APK.
+Use **Perfil → Exportar Backup (JSON)** de vez em quando: no iOS o sistema pode
+descartar o armazenamento de sites inativos, e o backup é a única cópia.
 
 ---
 

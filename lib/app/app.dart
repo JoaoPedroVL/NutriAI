@@ -17,7 +17,7 @@ class NutriaApp extends ConsumerWidget {
     final seed = ref.watch(seedProvider);
     final themeMode = ref.watch(themeModeProvider);
     return MaterialApp(
-      title: 'Nutria',
+      title: 'NutriAI',
       debugShowCheckedModeBanner: false,
       theme: buildAppTheme(),
       darkTheme: buildDarkAppTheme(),

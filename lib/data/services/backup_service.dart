@@ -1,11 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'package:drift/drift.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../core/browser_download.dart';
 import '../../core/user_profile.dart';
 import '../db/database.dart';
 import '../repositories/diary_repository.dart';
@@ -27,17 +30,28 @@ class BackupService {
   final UserProfileRepository _userProfileRepo;
   final WeightRepository _weightRepo;
 
+  /// Nome sugerido para o arquivo de backup (usado também na web).
+  String get backupFileName => 'nutria_backup_${_dateStamp()}.json';
+
   /// Exporta todos os dados para um arquivo JSON e compartilha (Share Sheet).
   Future<void> exportAndShare() async {
     final jsonString = await exportToJson();
-    final fileName = 'nutria_backup_${_dateStamp()}.json';
+    final fileName = backupFileName;
+
+    // Na web não existe diretório temporário: o navegador baixa o arquivo.
+    if (kIsWeb) {
+      downloadInBrowser(jsonString, fileName: fileName, mimeType: 'application/json');
+      return;
+    }
 
     // Salva em cache temporário e compartilha
     final tempDir = await getTemporaryDirectory();
     final file = File('${tempDir.path}/$fileName');
     await file.writeAsString(jsonString);
 
-    await Share.shareXFiles([XFile(file.path)], text: 'Backup do Nutria');
+    await SharePlus.instance.share(
+      ShareParams(files: [XFile(file.path)], text: 'Backup do NutriAI'),
+    );
   }
 
   /// Exporta todos os dados para string JSON.
@@ -72,26 +86,18 @@ class BackupService {
 
   /// Importa dados de um arquivo JSON (seletor de arquivo).
   Future<void> importFromFile() async {
-    final result = await FilePicker.platform.pickFiles(
+    final file = await FilePicker.pickFile(
       type: FileType.custom,
       allowedExtensions: ['json'],
       dialogTitle: 'Selecione o arquivo de backup',
     );
 
-    if (result == null || result.files.isEmpty) return;
+    if (file == null) return;
 
-    final file = result.files.first;
-    String jsonString;
-
-    if (file.bytes != null) {
-      jsonString = utf8.decode(file.bytes!);
-    } else if (file.path != null) {
-      jsonString = await File(file.path!).readAsString();
-    } else {
-      throw Exception('Arquivo inválido');
-    }
-
-    await importFromJson(jsonString);
+    // readAsBytes() funciona tanto em mobile/desktop quanto na web
+    // (onde o arquivo chega como blob e não tem caminho local).
+    final bytes = await file.readAsBytes();
+    await importFromJson(utf8.decode(bytes));
   }
 
   /// Importa dados de string JSON (transação atômica).

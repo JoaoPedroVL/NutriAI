@@ -1,11 +1,11 @@
 {
-    "name": "nutria",
-    "short_name": "nutria",
+    "name": "NutriAI",
+    "short_name": "NutriAI",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#F7F2E5",
+    "theme_color": "#3F6D1C",
+    "description": "Diário alimentar local-first: calorias, macros e água.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

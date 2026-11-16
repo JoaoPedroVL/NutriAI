@@ -1,5 +1,5 @@
 name: nutria
-description: "A new Flutter project."
+description: "Diário alimentar local-first com TACO, água e tema claro/escuro."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -47,10 +47,10 @@ dependencies:
   fl_chart: ^0.70.0
   shared_preferences: ^2.3.0
   flutter_local_notifications: ^18.0.1
-  share_plus: ^10.0.2
+  share_plus: ^13.3.1
   permission_handler: ^11.3.1
-  file_picker: ^8.1.4
-  device_info_plus: ^11.1.0
+  file_picker: ^13.3.0
+  device_info_plus: ^13.3.0
   timezone: ^0.10.1
   
 
